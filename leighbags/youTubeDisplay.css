@@ -1,0 +1,18 @@
+
+
+
+.youTubeEntriesList li {
+    float: left;
+    list-style-type: none;
+    width: 30%;
+    margin: 16px;
+}
+.youTubeEntriesList li h3{
+    height:80px;
+    text-align: center;
+}
+
+h2{
+    clear: left;
+    text-align: center;
+}

@@ -1,0 +1,20 @@
+<?php
+
+/*----------------------------------------------------------------------------
+      DRUPAL HOOKS
+----------------------------------------------------------------------------*/
+
+/**
+ * Implements hook_install();
+ */
+function badbot_install() {
+  variable_set('badbot_forms_salt', md5(time() . mt_rand(0, 30)));
+}
+
+/**
+ * Implements hook_uninstall();
+ */
+function badbot_uninstall() {
+  variable_del('badbot_forms_salt');
+  variable_del('badbot_forms_user_registration');
+}

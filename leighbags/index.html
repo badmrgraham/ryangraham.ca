@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html data-ng-app="youTubeDisplayApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="youTubeDisplay.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body data-ng-controller="youTubeDisplayController">
+
+    <div id="accordion">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><h2 class="gameTitle">Domestic Dog Simulator</h2></a>
+        <div id="collapse2" class="panel-collapse collapse in">
+            <ul class="youTubeEntriesList">
+                <!--<li class="youTubeEntriesListItem" ng-repeat="entries in vids.feed.entry | orderBy: 'media$group.yt$uploaded.$t'" >-->
+                <li class="youTubeEntriesListItem" ng-repeat="entry in gamingVids | filterOnGame: 'domestic dog' | orderBy: 'media$group.yt$uploaded.$t'" >
+                    <h3 class="youTubeEntryHeader">{{ entry.title.$t }}</h3><div my-youtube code="entry.media$group.yt$videoid.$t"></div>
+                </li>
+            </ul>
+        </div>
+
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><h2 class="gameTitle">The Binding of Isaac: Rebirth</h2></a>
+        <div id="collapse1" class="panel-collapse collapse in">
+            <ul class="youTubeEntriesList">
+                <!--<li class="youTubeEntriesListItem" ng-repeat="entries in vids.feed.entry | orderBy: 'media$group.yt$uploaded.$t'" >-->
+                <li class="youTubeEntriesListItem" ng-repeat="entry in gamingVids | filterOnGame: 'binding of isaac' | orderBy: 'media$group.yt$uploaded.$t'" >
+                    <h3 class="youTubeEntryHeader">{{ entry.title.$t }}</h3><div my-youtube code="entry.media$group.yt$videoid.$t"></div>
+                </li>
+            </ul>
+        </div>
+
+
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><h2 class="gameTitle">Other videos</h2></a>
+        <div id="collapse3" class="panel-collapse collapse">
+            <ul class="youTubeEntriesList">
+                <li class="youTubeEntriesListItem" ng-repeat="entry in otherVids | orderBy: 'media$group.yt$uploaded.$t'" >
+                    <h3 class="youTubeEntryHeader">{{ entry.title.$t }}</h3><div my-youtube code="entry.media$group.yt$videoid.$t"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--so {{ gamingVids[0].media$group.yt$videoid.$t }}-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="youTubeDisplayApp.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'DaysRegular';
+    src: url('days-webfont.eot');
+    src: url('days-webfont.eot?#iefix') format('embedded-opentype'),
+         url('days-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DaysRegular';
+    src: url('days-webfont.eot');
+    src: url('days-webfont.eot?#iefix') format('embedded-opentype'),
+         url('days-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'DaysRegular';
+    src: url('days-webfont.eot');
+    src: url('days-webfont.eot?#iefix') format('embedded-opentype'),
+         url('days-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+p
+{
+  font-family:DaysRegular;
+  position:relative;
+  color:white;
+  top: 37%;
+}
+
+p.title 
+{ 
+  font-size:4em;
+  left:7%;
+  top:45%;
+}
+
+p.subtitle
+{
+  font-size:100%;
+  left:31%;
+}
+
+p.writeup
+{
+  font-size:100%;
+  margin-left:7%;
+  margin-right:30%;
+}
+
+img
+{
+  border: 0;
+  top:42%;
+  position:relative;
+}
+
+img.twitterIcon
+{
+  margin-left:7%;
+}
+
+a
+{
+  outline: none;
+}
+
+div.content
+{
+  width: 1024px;
+  height: 768px;
+  background-color:black;
+}
+
+body
+{
+  background-color:white;
+}

@@ -1,0 +1,206 @@
+<?php
+
+/*----------------------------------------------------------------------------
+      CONFIG
+----------------------------------------------------------------------------*/
+
+// wishlist:
+  // TODO: spam JS-detection
+  // TODO: integration w/ stopforumspam.com
+  // TODO: scraper honeypot
+  // TODO: email honeypot
+  // TODO: teergrubing ??
+  // TODO: limit number of hits from same IP per time period?
+  // TODO: no user agent string? block 'em
+
+/*----------------------------------------------------------------------------
+      DRUPAL HOOKS
+----------------------------------------------------------------------------*/
+
+/**
+ * Implements hook_menu();
+ */
+function badbot_menu() {
+  $items['badbot/token'] = array(
+    'title' => 'Token generation',
+    'page callback' => 'badbot_js_token',
+    'access callback' => TRUE,
+  );
+
+  $items['admin/config/system/badbot'] = array(
+    'title' => 'Badbot',
+    'page callback' => 'badbot_settings',
+    'access arguments' => array('administer badbot'),
+  );
+  
+  return $items;
+}
+
+/**
+ * Implements hook_permissions();
+ */
+function badbot_permission() {
+  return array(
+    'administer badbot' => array(
+      'title' => t('Administer badbot'), 
+      'description' => t('Administer settings for Badbot.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_alter();
+ */
+function badbot_form_alter(&$form, &$form_state, $form_id) {
+  $form_ids = &drupal_static(__FUNCTION__);
+  
+  if (!isset($form_ids)) {
+    $form_ids = array();
+  }
+
+  if ($form_id == 'user_register_form' && variable_get('badbot_forms_user_registration', FALSE) && variable_get('badbot_forms_salt', FALSE)) {
+    // name of the field which will be used as content for token generation
+      $field = 'mail';
+      $validation_field = $field . '_validate';
+
+    // include our core JS
+      drupal_add_js(drupal_get_path('module', 'badbot') . '/js/badbot.js');
+
+    // create validation field which will be populated with the token upon form submission;
+    // this field is hidden from view, so normal users will never see it
+      $form[$validation_field] = array(
+        '#type' => 'textfield',
+        '#prefix' => '<div style="display: none !important;">',
+        '#suffix' => '</div>',
+      );
+
+    // track the names of our field and validation field in $form_state so we can identify
+    // them in the validation handler
+      $form_state['badbot']['field'] = $field;
+      $form_state['badbot']['validation_field'] = $validation_field;
+
+    // track our form id & relevant fields and save to Drupal.settings for access from our
+    // core JS
+      $form_ids[] = array(
+        'form_id' => $form['#id'],
+        'field' => $field,
+        'validation_field' => str_replace('_', '-', $validation_field),
+      );
+
+      drupal_add_js(array(
+        'badbot' => array(
+          'base_path' => url('', array('absolute' => TRUE)),
+          'forms' => $form_ids,
+        ),
+      ), 'setting');
+
+    // validation handler to check the token
+      $form['#validate'][] = 'badbot_form_validate';
+  }
+}
+
+/*----------------------------------------------------------------------------
+      CALLBACKS
+----------------------------------------------------------------------------*/
+
+/**
+ * Callback for /admin/config/system/badbot
+ */
+function badbot_settings() {
+  $form = drupal_get_form('badbot_settings_form');
+  
+  $output = drupal_render($form);
+  
+  return $output;
+}
+
+/**
+ * Callback for /badbot/token
+ * @return [type] [description]
+ */
+function badbot_js_token($field_data, $return = FALSE) {
+  $token = md5(variable_get('badbot_forms_salt', FALSE) . $field_data);
+
+  if ($return) {
+    return $token;  
+  }
+  else {
+    echo $token;
+    exit();   
+  }
+}
+
+/*----------------------------------------------------------------------------
+      FORMS
+----------------------------------------------------------------------------*/
+
+/**
+ * Main module settings form.
+ * @param  [type] $form       [description]
+ * @param  [type] $form_state [description]
+ * @return [type]             [description]
+ */
+function badbot_settings_form($form, &$form_state) {
+  $form['badbot'] = array(
+    '#type' => 'vertical_tabs',
+  );
+  
+    $form['badbot']['forms'] = array(
+      '#title' => t('Forms'),
+      '#type' => 'fieldset',
+      '#description' => t('Enable JavaScript detection on select forms.') . '<br/><br />',
+    );
+
+      $form['badbot']['forms']['badbot_forms_salt'] = array(
+        '#title' => t('Salt'),
+        '#type' => 'textfield',
+        '#description' => t("This salt is used during the field hashing process. A salt had been genererated
+                             for you when the module was installed, but you're free to change it. If you 
+                             don't know the consenquences of changing this value, it's best to leave it alone.") .
+                          ' <strong>' . t('Do not disclose this value to anyone. Treat it as you would a password.') . '</strong>' ,
+        '#default_value' => variable_get('badbot_forms_salt'),
+      );
+
+      $form['badbot']['forms']['badbot_forms_user_registration'] = array(
+        '#title' => t('User Registration'),
+        '#type' => 'checkbox',
+        '#default_value' => variable_get('badbot_forms_user_registration', 0),
+      );
+
+  return system_settings_form($form);
+}
+
+/**
+ * Form validation handler for JavaScript-check enabled forms.
+ */
+function badbot_form_validate($form, &$form_state) {
+  $error = FALSE;
+  
+  $field = $form_state['badbot']['field'];
+  $validation_field = $form_state['badbot']['validation_field'];
+  
+  // ensure the token is what we expect it to be
+  if (!isset($form_state['values'][$validation_field]) || badbot_js_token($form_state['values'][$field], TRUE) != $form_state['values'][$validation_field]) {
+    $error = TRUE;
+    watchdog('badbot', 'Blocked form submission.');
+  }
+  
+  if($error) {
+    if(empty($error_message)) {
+      $error_message = t('Sorry, our spam system has flagged your account. Possible reasons for this include:');
+    
+      $reasons = array();
+      $reasons[] = t('You have Javascript turned off.');
+      $reasons[] = t('Your email or IP address has been flagged as spam by third party services.');
+    
+      $error_message .= '<div class="badbot-block-reasons">' . theme('item_list', array('items' => $reasons)) .'</div>';
+      $error_message .= t('For assistance, please contact the site administrator.');
+    }
+    
+    form_set_error('', $error_message);
+  }
+}
+
+/*----------------------------------------------------------------------------
+      INTERNAL
+----------------------------------------------------------------------------*/

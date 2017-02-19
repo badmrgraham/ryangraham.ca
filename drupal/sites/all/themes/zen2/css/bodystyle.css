@@ -1,0 +1,19 @@
+	@font-face
+	{
+		font-family: droidSerif;
+		src: url('/sites/default/files/font/DroidSerif-Regular.ttf');
+	}
+	
+	p
+	{
+		margin-bottom: 0;
+		line-height: 1.5em;
+		color: #444;
+		font-family: droidSerif;
+	}
+	
+	p + p
+	{
+		text-indent: 2em;
+		margin-top: 0;
+	}
