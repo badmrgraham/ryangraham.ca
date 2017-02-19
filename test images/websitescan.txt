@@ -1,0 +1,13 @@
+
+
+Scan started at - Tue Jan 10 19:29:08 EST 2017
+/rg/wp-content/plugins/flexible-posts-widget/js/credits.pl: SiteLock-PHP-SHELL-et.UNOFFICIAL FOUND
+/rg/wp-includes/images/crystal/import.php: JCDEF.PHP.CMDSHELL-01N.UNOFFICIAL FOUND
+/rg/wp-includes/images/smilies/comment.pl: SiteLock-PHP-SHELL-et.UNOFFICIAL FOUND
+/rg/wp-includes/images/wlw/about.php: {HEX}php.cmdshell.unclassed.344.UNOFFICIAL FOUND
+/rg/wp-includes/images/wlw/version.php: SiteLock-PHP-SHELL-md5-djx.UNOFFICIAL FOUND
+
+----------- SCAN SUMMARY -----------
+Infected files: 5
+Time: 112.183 sec (1 m 52 s)
+Scan ended at - Tue Jan 10 19:31:01 EST 2017

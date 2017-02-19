@@ -1,0 +1,69 @@
+/*
+Theme Name:     Ryan Responsive Theme
+Theme URI:      http://ryangraham.ca/
+Description:    Ryan Responsive Theme extends the functionality of Responsive theme for RyanGraham.ca
+Author:         Ryan Graham
+Author URI:     http://ryangraham.ca/about/
+Template:       responsive
+Version:        0.0.1
+*/
+
+.menu li{
+	width: 25%;
+	text-align: center;
+}
+
+li.post{
+	list-style:none;
+	border-width: 2px;
+	border-style: solid;
+	margin-bottom: 5px;
+	max-width: 233px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 220px;
+}
+
+.widget-title-home h3{
+	text-align:center;
+}
+
+li.post img{
+	margin: 2px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#dpe-flexible-posts{
+	height: 670px;
+}
+
+li.post h4{
+	text-align: center;
+	margin: 2px;
+}
+
+#featured p{
+	font-family: "Glegoo", arial, sans-serif;
+	text-align: left;
+}
+
+h2{
+	font-size: 1.70em;
+}
+
+.home-widgets div{
+	max-width: 306px;
+}
+
+.featured-title{
+	color: #f78d1e;
+}
+
+.widget-title-home h3{
+	color: #f78d1e;
+}
+
+h1{
+	color: #f78d1e;
+}
