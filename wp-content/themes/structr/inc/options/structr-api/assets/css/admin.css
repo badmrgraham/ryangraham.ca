@@ -1,0 +1,509 @@
+.structr *,
+.structr *:before,
+.structr *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.admin-page-form * {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+.structr img {
+	width: 100%;
+}
+
+
+img.structr-media-preview-image {
+	cursor: pointer;
+	width: 12em;
+	height: 8em;
+	outline: 3px solid rgba(255, 255, 255, 0.5);
+	outline-offset: -3px;
+	border: 1px solid #BFBFBF;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+}
+
+input#demo_settings_mediaa {
+	width: 18em;
+}
+
+.structr .structr-label {
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1.3em;
+}
+
+.structr-clear:after,
+.structr [class*="columns-"]:after,
+.structr-repeat-fields:after {
+	clear: both;
+	content: '';
+	display: table;
+}
+
+.structr-content-wrap {
+	max-width: 800px;
+}
+
+.structr-format-text-sec p,
+.structr-format-text-sec li {
+	font-size: 14px;
+	line-height: 23px;
+}
+.structr-format-text-sec p:not(:last-child) {
+	margin-bottom: 23px;
+}
+.structr-format-text-sec li {
+	margin-bottom: 0;
+}
+
+.structr .structr-media-hidden {
+	display: none;
+}
+
+.structr .structr-sep {
+	margin-bottom: 30px;
+}
+
+#poststuff .structr h3:not(.hndle) {
+	font-size: 1.3em;
+	margin: 1em 0;
+	padding-left: 0;
+}
+
+.structr h3.hndle input[type="text"] {
+	border: 0;
+	box-shadow: none;
+	padding: 0;
+}
+
+.structr-nested {
+	border-left: 3px solid #eee;
+}
+
+.structr-nested.form-table th {
+	padding-left: 15px;
+}
+
+input.validbg {
+	background-color: #D2FFD2;
+}
+input.invalidbg {
+	background-color: #FFDADA;
+}
+
+/*--------------------------------------------------------------
+!Helper Classes
+--------------------------------------------------------------*/
+
+.structr-title {
+	color: #222;
+	font-size: 1.3em;
+	font-weight: 600;
+	margin: 1em 0;
+}
+
+.structr-alignright {
+	float: right;
+}
+
+.structr-inline,
+.wrap .structr-inline {
+	display: inline-block;
+	padding-right: 0;
+	line-height: 35px;
+	white-space: nowrap;
+	font-weight: bold;
+	color: #3B687D;
+}
+
+.structr .structr-spacer {
+	margin-bottom: 15px;
+}
+
+.structr-hr {
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+
+/*--------------------------------------------------------------
+!Admin Page Tab Styling
+--------------------------------------------------------------*/
+
+.structr-tabs {
+	border-bottom: 1px solid #D8D8D8;
+	color: #555;
+	display: inline-block;
+	font-size: 13px;
+	padding: 0 10px;
+	position: relative;
+	width: 100%;
+	background: #F9F9F9;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.structr-tab {
+	cursor: pointer;
+	display: inline-block;
+	margin: 15px 0 15px 6px;
+	text-decoration: none;
+}
+
+.structr-tab:first-child {
+	margin-left: 0;
+}
+
+.structr-tab-active {
+	font-weight: bold;
+}
+
+.structr-tab:after {
+	content: '\002022';
+	line-height: normal;
+	font-size: 12px;
+	vertical-align: middle;
+	margin: 0 0 0 6px;
+	color: #999;
+	font-weight: normal;
+}
+
+.structr-tab:last-child:after {
+	display: none;
+}
+
+a.structr-tab:focus {
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+
+/* DASHICON */
+
+.structr-tab-dashicon {
+	color: #777;
+	font-size: 17px;
+	height: auto;
+	margin-right: 5px;
+	width: auto;
+}
+
+.structr-links {
+	font-size: 12px;
+}
+
+.structr-links a {
+	color: #555;
+	text-decoration: none;
+}
+
+.structr-links a:hover {
+	color: #00a0d2;
+}
+
+
+/* HEADER */
+
+.structr-header {
+	margin-bottom: 0;
+}
+
+.structr-header-title {
+	margin-left: 10px;
+	padding: 0.25em 0;
+}
+.structr-header-title h1.structr-inline:before {
+	content: '';
+	background-image: url(/wp-content/themes/structr/img/admin-logo-sm.png);
+	background-size: 35px 35px;
+	width: 35px;
+	height: 35px;
+	display: block;
+	float: left;
+	margin-right: 0.25em;
+}
+
+
+/*--------------------------------------------------------------
+!Input Field Styling
+--------------------------------------------------------------*/
+
+.structr-badge,
+.structr-badge:hover {
+	background-color: #F2A846;
+	color: #fff;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+.structr-repeat-field:not(:last-child) {
+	margin-bottom: 10px;
+}
+
+.structr-repeat-field:first-child .structr-repeat-delete {
+	display: none;
+}
+
+a.structr-circle-badge {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 50%;
+	color: #fff;
+	display: inline-block;
+	font-size: 1.2em;
+	height: 19px;
+	margin-right: 4px;
+	text-align: center;
+	width: 19px;
+}
+
+.structr-repeat-delete {
+	color: #a00;
+	text-decoration: none;
+}
+
+.structr-repeat-delete:hover {
+	background-color: #a00;
+	color: #fff;
+}
+
+.structr .form-table td {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.structr .postbox-container .structr-meta-h3 {
+	font-size: 1.3em;
+	padding-left: 0;
+	margin: 1em 0;
+}
+
+.structr-repeat-field-new .button {
+	display: none;
+}
+
+.structr-repeat-field-new .button.remove-button,
+.structr-repeat-field-new .button.insert-media.add_media {
+	display: inline-block;
+}
+
+.structr-repeat-delete {
+	display: inline-block;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+.structr-repeat-add.button {
+	margin-top: 0.4em;
+}
+
+.structr-button-title {
+	display: inline-block;
+	margin: 0.2em 0.3em 1.8em 0;
+}
+
+.form-table input.regular-text {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+input[type=number] {
+	height: auto;
+}
+.structr-edd-license-input {
+	padding-bottom: 0.5em;
+}
+.sp-version {
+	margin-right: 0;
+	margin-left: 0;
+	font-size: 10px;
+	letter-spacing: 0.5px;
+	font-weight: bold;
+	padding: 2px 7px 2px 6px;
+	background-color: rgb(226, 114, 102);
+}
+.panel-txt {
+	font-size: 12px;
+	font-weight: 900;
+	text-transform: uppercase;
+	top: -2px;
+	display: inline;
+	position: relative;
+	letter-spacing: -0.25px;
+}
+
+
+
+/* UPDATER */
+
+@media all and (min-width: 782px) {
+
+	.structr-edd-license-input {
+		display: inline-block;
+		position: relative;
+		padding-bottom: 0;
+	}
+
+}
+@media all and (max-width: 782px) {
+
+	label.sp_license_label {
+		font-size: 16px;
+		line-height: 1.5em;
+	}
+	.structr-edd-license-input + input + input + input.button-secondary {
+		font-size: 16px;
+		padding: 4px 10px;
+		height: auto;
+	}
+	td.license-row {
+		margin-bottom: 1em;
+	}
+	tr:last-child td.license-row:last-of-type {
+		margin-bottom: 0;
+	}
+
+}
+
+
+/*--------------------------------------------------------------
+!Columns for Admin Page Layout
+--------------------------------------------------------------*/
+
+.structr [class*="columns-"] {
+	margin-bottom: 22px;
+	margin-top: 25px;
+}
+
+.structr .col {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-bottom: 22px;
+	position: relative;
+}
+
+.structr .columns-single {
+	margin-left: -22px;
+}
+
+.structr .columns-single > .col {
+	padding-left: 22px;
+}
+
+@media all and (min-width: 1000px) {
+
+	.structr .columns-2 .col {
+		float: left;
+		width: 50%;
+	}
+
+	.structr .columns-3 > .col {
+		float: left;
+		width: 33.333333333%;
+	}
+
+	.structr .columns-60-40 > .col1 {
+		float: left;
+		width: 60%;
+	}
+
+	.structr .columns-60-40 > .col2 {
+		float: left;
+		width: 40%;
+	}
+
+}
+
+.structr .col-style {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-width: 0 1px 1px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+	padding: 33px 22px;
+}
+
+.structr .col-image {
+	display: block;
+	margin: -33px -22px 33px;
+	position: relative;
+}
+
+.structr .col-image .structr-badge {
+	border-radius: 0;
+	margin-left: 0;
+	padding-bottom: 5px;
+	padding-right: 8px;
+	position: absolute;
+		left: 0;
+		top: 0px;
+}
+
+.structr .col-style h4 {
+	font-size: 17px;
+	margin-bottom: 11px;
+	margin-top: 0;
+}
+
+.structr .col-style p {
+	font-size: 14px;
+	line-height: 22px;
+	margin-bottom: 22px;
+}
+
+.structr .col-featured {
+	outline: 5px solid #F2A846;
+	box-shadow: 0 0 10px rgba(253, 226, 173, 0.3);
+}
+
+
+.structr img {
+	height: auto;
+	max-width: 100%;
+	vertical-align: top;
+	margin: 0 0 4px 1px;
+}
+
+.opacity {
+	opacity: 0.5;
+}
+
+.opacity:hover {
+	opacity: 1;
+}
+
+
+
+/** CONTENT SPOTLIGHT **/
+
+.content-spotlight {
+	background-color: #23282D;
+	color: #fff;
+	display: block;
+	padding: 50px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.content-spotlight:hover {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.content-spotlight span {
+	text-transform: uppercase;
+}
+
+.content-spotlight p {
+	font-size: 23px;
+	line-height: 34px;
+	margin-bottom: 0;
+	margin-top: 12px;
+}
