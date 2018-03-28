@@ -11,20 +11,18 @@ if ( !defined( 'ABSPATH' ) ) {
 function responsive_upgrade_bar() {
 	?>
 
-	<div class="upgrade-callout">
+	<!--  <div class="upgrade-callout">
 		<p class="responsivepro-offer"><img src="<?php echo get_template_directory_uri(); ?>/core/includes/theme-options/images/chimp.png" alt="CyberChimps"/>
 			<?php printf( __( '%1$s Such Free Themes By CyberChimps</span>', 'responsive' ),
 						    ' <a href="https://cyberchimps.com/10-free-responsive-wordpress-themes/?utm_source=orgwpresponsive" target="_blank" title="CyberChimps Free Themes">Get More</a> '
 			); ?>
 		</p>
-                <!-- <p class="responsivepro-offer">Get 30% off on Responsive Pro using Coupon Code RESPONSIVE30</p> -->
-		
-		
+        <!-- <p class="responsivepro-offer">Get 30% off on Responsive Pro using Coupon Code RESPONSIVE30</p> -->		
 	
-	</div>
+	<!--</div>-->
 	<div class="updated">
-		<p><strong><?php _e('Looking for More Features?','responsive');?></strong></p>
-		<p><strong><?php _e('Check out <a href="https://cyberchimps.com/store/responsivepro/?utm_source=responsive2pro" target="_blank" title="Responsive Pro">Responsive Pro</a> & <a href="https://cyberchimps.com/product-category/upgradefromresponsive/?utm_source=responsive2pro" target="_blank" title="Responsive Pro">Premium Child Themes</a> for your Responsive Theme.','responsive'); ?></strong></p>
+		<p><?php _e('Looking for More Features?','responsive');?></p>
+		<p><?php _e('Check out <a href="https://cyberchimps.com/store/responsivepro/?utm_source=responsive2pro" target="_blank" title="Responsive Pro">Responsive Pro</a> & <a href="https://cyberchimps.com/product-category/upgradefromresponsive/?utm_source=responsive2pro" target="_blank" title="Responsive Pro">Premium Child Themes</a> for your Responsive Theme.','responsive'); ?></p>
 	</div>
 <?php
 }
@@ -43,18 +41,20 @@ function responsive_theme_support() {
 			<a class="button" href="<?php echo esc_url( 'http://cyberchimps.com/guides/r-free/' ); ?>" title="<?php esc_attr_e( 'Instructions', 'responsive' ); ?>" target="_blank">
 				<?php _e( 'Instructions', 'responsive' ); ?></a>
 
-			<a class="button button-primary" href="<?php echo esc_url( 'http://cyberchimps.com/forum/free/responsive/' ); ?>" title="<?php esc_attr_e( 'Help', 'responsive' ); ?>" target="_blank">
-				<?php _e( 'Help', 'responsive' ); ?></a>
+			<a class="button" href="<?php echo esc_url( 'http://cyberchimps.com/forum/free/responsive/' ); ?>" title="<?php esc_attr_e( 'Help', 'responsive' ); ?>" target="_blank">
+				<?php _e( 'Help', 'responsive' ); ?></a>			
 
-			<a class="button" href="<?php echo esc_url( 'https://webtranslateit.com/en/projects/3598-Responsive-Theme' ); ?>" title="<?php esc_attr_e( 'Translate', 'responsive' ); ?>" target="_blank">
-				<?php _e( 'Translate', 'responsive' ); ?></a>
-
-			<a class="button" href="<?php echo esc_url( 'http://cyberchimps.com/showcase/' ); ?>" title="<?php esc_attr_e( 'Showcase', 'responsive' ); ?>" target="_blank">
-				<?php _e( 'Showcase', 'responsive' ); ?></a>
-
-			<a class="button" href="<?php echo esc_url( 'http://cyberchimps.com/store/' ); ?>" title="<?php esc_attr_e( 'More Themes', 'responsive' ); ?>" target="_blank">
-				<?php _e( 'More Themes', 'responsive' ); ?></a>
-
+				
+			<a class="button button-primary" href="<?php echo esc_url( 'https://wordpress.org/support/theme/responsive/reviews/#new-post/' ); ?>" title="<?php esc_attr_e( 'Leave a star rating', 'responsive' ); ?>" target="_blank">
+				<?php _e( 'Leave a star rating', 'responsive' ); ?></a>
+			
+			<a class="button" href="<?php echo esc_url( 'https://cyberchimps.com/contact/' ); ?>" title="<?php esc_attr_e( 'Need Customization', 'responsive' ); ?>" target="_blank">
+				<?php _e( 'Need Customization?', 'responsive' ); ?></a>
+							
+			<a class="button" href="<?php echo esc_url( 'https://cyberchimps.com/checkout/?add-to-cart=277804' ); ?>" title="<?php esc_attr_e( 'Theme Demo Data', 'responsive' ); ?>" target="_blank">
+				<?php _e( 'Theme Demo Data', 'responsive' ); ?></a>
+<a class="button" href="<?php echo esc_url( 'https://cyberchimps.com/store/responsivepro#whygopro' ); ?>" title="<?php esc_attr_e('Why Go Pro?', 'responsive' ); ?>" target="_blank">	
+				<?php _e( 'Why Go Pro?', 'responsive' ); ?></a>
 		</div>
 	</div>
 
@@ -64,6 +64,9 @@ function responsive_theme_support() {
 add_action( 'responsive_theme_options', 'responsive_theme_support', 2 );
 
 function responsive_install_plugins() {
+
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
 	$plugins = array(
 
 		// This is an example of how to include a plugin pre-packaged with a theme
@@ -73,11 +76,39 @@ function responsive_install_plugins() {
 			'required' => false
 		),
 		array(
+			'name'     => 'SlideDeck', // The plugin name
+			'slug'     => 'slidedeck', // The plugin slug (typically the folder name)
+			'required' => false
+		),
+		array(
 			'name'     => 'iFeature Slider', // The plugin name
 			'slug'     => 'ifeature-slider', // The plugin slug (typically the folder name)
 			'required' => false
+		),
+		array(
+			'name'     => ' WP Legal Pages', // The plugin name
+			'slug'     => 'wplegalpages', // The plugin slug (typically the folder name)
+			'required' => false
+		),
+		array(
+			'name'     => 'WPForms Lite', // The plugin name
+			'slug'     => 'wpforms-lite', // The plugin slug (typically the folder name)
+			'required' => false
 		)
+			
 	);
+
+	$activeplugin = 0;
+
+	if ( !is_plugin_active( 'ifeature-slider/ifeatureslider.php' ) ) 
+		$activeplugin += 1; 
+	if ( !is_plugin_active( 'responsive-add-ons/responsive-add-ons.php' ) )
+		$activeplugin += 1;
+	if ( !is_plugin_active( 'slidedeck/slidedeck.php' ) )
+		$activeplugin += 1;	
+	if ( !is_plugin_active( 'wpforms-lite/wpforms.php' ) )
+		$activeplugin += 1;	
+
 
 	// Change this to your theme text domain, used for internationalising strings
 	$theme_text_domain = 'responsive';
@@ -90,6 +121,8 @@ function responsive_install_plugins() {
 	 * end of each line for what each argument will be.
 	 */
 
+	$count = '<span class="addon-count">'.$activeplugin.'</span>';
+	
 	$config = array(
 		'domain'           => $theme_text_domain, // Text domain - likely want to be the same as your theme.
 		'default_path'     => '', // Default absolute path to pre-packaged plugins
@@ -101,7 +134,7 @@ function responsive_install_plugins() {
 		'message'          => '', // Message to output right before the plugins table
 		'strings'          => array(
 			'page_title'                      => __( 'Responsive Add Features', 'responsive' ),
-			'menu_title'                      => __( 'Activate Add Ons', 'responsive' ),
+			'menu_title'                      => __( 'Activate Add Ons'.$count, 'responsive' ),
 			'installing'                      => __( 'Installing Plugin: %s', 'responsive' ), // %1$s = plugin name
 			'oops'                            => __( 'Something went wrong with the plugin API.', 'responsive' ),
 			'notice_can_install_required'     => _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'responsive' ), // %1$s = plugin name(s)

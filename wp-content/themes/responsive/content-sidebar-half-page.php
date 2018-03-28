@@ -22,7 +22,7 @@ Template Name:  Content/Sidebar Half Page
  */
 
 get_header(); ?>
-
+<div id="content-outer">
 <div id="content" class="grid col-460" role="main">
 
 	<?php get_template_part( 'loop-header', get_post_type() ); ?>
@@ -38,6 +38,7 @@ get_header(); ?>
 				<?php get_template_part( 'post-meta-page', get_post_type() ); ?>
 
 				<div class="post-entry">
+					<?php responsive_page_featured_image(); ?>
 					<?php the_content( __( 'Read more &#8250;', 'responsive' ) ); ?>
 					<?php wp_link_pages( array( 'before' => '<div class="pagination">' . __( 'Pages:', 'responsive' ), 'after' => '</div>' ) ); ?>
 				</div><!-- end of .post-entry -->
@@ -67,4 +68,5 @@ get_header(); ?>
 </div><!-- end of #content -->
 
 <?php get_sidebar( 'right-half' ); ?>
+</div>
 <?php get_footer(); ?>

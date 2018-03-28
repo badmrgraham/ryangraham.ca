@@ -17,7 +17,7 @@
             <span class="copyright"><?php echo squirrel_get_option('squirrel_cright'); ?></span> 
             <?php
         } else {
-            printf('<span class="copyright"><a rel="nofollow" href="' . esc_url('http://www.inkthemes.com') . '">Squirrel Theme</a> powered by <a href="' . esc_url('http://www.wordpress.org') . '">WordPress</a></span>');
+            printf('<span class="copyright"><a rel="nofollow" href="' . esc_url('https://www.inkthemes.com/market/tattoo-shop-wordpress-theme/') . '">Squirrel Theme</a> powered by <a href="' . esc_url('http://www.wordpress.org') . '">WordPress</a></span>');
         }
         ?>
     </div>

@@ -1,9 +1,9 @@
 === Featured Image ===
 Contributors: mervinpraison
-Donate Link: http://mervin.info
+Donate Link: https://mer.vin
 Tags: image, featured image, widget, image widget, image featured, image widget, seo,
 Requires at least: 3.0
-Tested up to: 3.8.1
+Tested up to: 4.8.1
 Stable tag: trunk
 
 Add featured image to any part of the website, on each individual post/page. Very Easy to Implement. Shortcode and widget available. 
@@ -21,8 +21,8 @@ Paste the Code or the Shortcode on any part of the website.
 * Widge Avaliable
 * Featured Image Caption
 
-<a href="http://mervin.info/wordpress-featured-image">Wordpress Featured Image</a> Documentation By <a href="http://mervin.info/">Mervin</a> Praison
-<a href="http://seomanager.org.uk" >SEO Manager</a>
+<a href="https://mer.vin/wordpress-featured-image">Wordpress Featured Image</a> Documentation By <a href="https://mer.vin/">Mervin</a> Praison
+<a href="https://seomanageruk.com" >SEO Manager</a>
 
 == Installation ==
 
@@ -42,6 +42,11 @@ Paste the Code or the Shortcode on any part of the website.
 
 
 == ChangeLog ==
+
+= version 2.1 =
+
+* global $post fix
+
 = Version 2.0 =
 
 * Added Featured Image Caption
@@ -63,11 +68,19 @@ Paste the Code or the Shortcode on any part of the website.
 
 == Upgrade Notice ==
 
+= 2.1 = 
+
+Minor global $post fix
+
 = 1.0 =
 Created the shortcode, widget and the php code
 
 
 == Version history ==
+
+= version 2.1 =
+
+* global $post fix
 
 = Version 2.0 =
 
@@ -80,6 +93,10 @@ Created the shortcode, widget and the php code
 * Initial release version.
 
 == Changelog ==
+
+= 2.1 = 
+
+* global $post fix
 
 = 2.0 =
 

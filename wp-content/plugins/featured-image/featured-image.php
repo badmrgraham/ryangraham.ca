@@ -2,17 +2,17 @@
 /**
  * @package Featured Image
  * @author Mervin Praison
- * @version 2.0
+ * @version 2.1
  */
 /*
     Plugin Name: Featured Image
-    Plugin URI: http://mervin.info/wordpress-featured-image
+    Plugin URI: https://mer.vin/wordpress-featured-image
     Description: Provides you with a featured image shortcode [ featured-img ] and Featured Image widget. Very Easy to implement. 
     Author: Mervin Praison
-    Version: 2.0
+    Version: 2.1
     License: GPL
-    Author URI: http://mervin.info/
-    Last change: 08.04.2014
+    Author URI: https://mer.vin/
+    Last change: 04.08.2017
 */
 /**
 * Example for use inside the loop: <?php if ( function_exists('get_featured_img') ) get_featured_img(); ?>
@@ -21,7 +21,7 @@
 /* Getting Featured Image [featured-img] */
 
 function getting_featured_img() {
-    
+global $post;
 $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
 $alt = get_post_meta(get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true);
 

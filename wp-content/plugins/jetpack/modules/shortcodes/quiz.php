@@ -79,7 +79,13 @@ class Quiz_Shortcode {
 	 */
 	private static function enqueue_scripts() {
 		wp_enqueue_style( 'quiz', plugins_url( 'css/quiz.css', __FILE__ ) );
-		wp_enqueue_script( 'quiz', plugins_url( 'js/quiz.js', __FILE__ ), array( 'jquery' ), null, true );
+		wp_enqueue_script(
+			'quiz',
+			Jetpack::get_file_url_for_environment( '_inc/build/shortcodes/js/quiz.min.js', 'modules/shortcodes/js/quiz.js' ),
+			array( 'jquery' ),
+			null,
+			true
+		);
 	}
 
 	/**
@@ -181,7 +187,7 @@ class Quiz_Shortcode {
 		}
 
 		$quiz = self::do_shortcode( $content );
-		return '<div class="quiz"' . $id . '>' . $quiz . '</div>';
+		return '<div class="jetpack-quiz quiz"' . $id . '>' . $quiz . '</div>';
 	}
 
 	/**
@@ -224,7 +230,7 @@ class Quiz_Shortcode {
 	 */
 	public static function question_shortcode( $atts, $content = null ) {
 		return isset( $atts['quiz_item'] )
-			? '<div class="question">' . self::do_shortcode( $content ) . '</div>'
+			? '<div class="jetpack-quiz-question question">' . self::do_shortcode( $content ) . '</div>'
 			: '';
 	}
 
@@ -244,7 +250,7 @@ class Quiz_Shortcode {
 		}
 
 		return isset( $atts['quiz_item'] )
-			? '<div class="answer" data-correct="1">' . self::do_shortcode( $content ) . '</div>'
+			? '<div class="jetpack-quiz-answer answer" data-correct="1">' . self::do_shortcode( $content ) . '</div>'
 			: '';
 	}
 
@@ -264,7 +270,7 @@ class Quiz_Shortcode {
 		}
 
 		return isset( $atts['quiz_item'] )
-			? '<div class="answer">' . self::do_shortcode( $content ) . '</div>'
+			? '<div class="jetpack-quiz-answer answer">' . self::do_shortcode( $content ) . '</div>'
 			: '';
 	}
 
@@ -284,7 +290,7 @@ class Quiz_Shortcode {
 		}
 
 		return isset( $atts['quiz_item'] )
-			? '<div class="explanation">' . self::do_shortcode( $content ) . '</div>'
+			? '<div class="jetpack-quiz-explanation explanation">' . self::do_shortcode( $content ) . '</div>'
 			: '';
 	}
 }

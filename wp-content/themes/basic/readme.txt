@@ -1,8 +1,8 @@
 === Basic ===
 Contributors: wppuzzle, avovkdesign
-Requires at least: WordPress 4.2
-Tested up to: WordPress 4.7.3
-Version: 1.3.2
+Requires at least: WordPress 4.3
+Tested up to: WordPress 4.9.1
+Version: 1.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://www.liqpay.com/checkout/wppuzzle
@@ -27,6 +27,27 @@ Basic is simple responsive WordPress theme. It has custom color option, customiz
 
 
 == Changelog ==
+
+= 1.3.6 =
+* fixed bug with h1 unclosed tag
+
+= 1.3.5 =
+* tested up to WordPress 4.9.1
+* fixed: add homepage link for logo for 2,3,... pages
+
+= 1.3.4 =
+* tested up to WordPress 4.9
+* fix: error preview option "Hide share buttons on static pages"
+* fix: showing marker with comments list
+* fix: hierarchy visibility in mobile menu
+* add: responsive video container
+* delete: removed CSS class 'hentry' for posts
+
+= 1.3.3 =
+* tested up to WordPress 4.8
+* fix: notice `undefined index in inc\html-blocks.php on line 128`
+* add: filter for copyrights `basic_footer_copyrights_enabled`
+* fix: `li:before` changed by `list-style-image` and svg image
 
 = 1.3.2 =
 * fix: lang prefix

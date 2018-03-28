@@ -92,6 +92,15 @@ function responsive_get_sidebar_classes() {
  * Get current layout
  */
 function responsive_get_layout() {
+	
+	/* WooCommerce Shop page */
+	if ( class_exists( 'WooCommerce' ) ) {
+		if( is_shop() )
+		{
+			return 'default';
+		}
+	}
+	
 	/* 404 pages */
 	if ( is_404() ) {
 		return 'default';
@@ -167,7 +176,8 @@ function responsive_get_valid_layouts() {
 		'sidebar-content-page'      => __( 'Sidebar/Content', 'responsive' ),
 		'content-sidebar-half-page' => __( 'Content/Sidebar Half Page', 'responsive' ),
 		'sidebar-content-half-page' => __( 'Sidebar/Content Half Page', 'responsive' ),
-		'full-width-page'           => __( 'Full Width Page (no sidebar)', 'responsive' )
+		'full-width-page'           => __( 'Full Width Page (no sidebar)', 'responsive' ),
+		'blog-3-col'      			=> __( 'Blog 3 Column', 'responsive' )
 	);
 
 	return apply_filters( 'responsive_valid_layouts', $layouts );

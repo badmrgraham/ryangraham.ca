@@ -32,7 +32,7 @@ function responsive_admin_enqueue_scripts( $hook_suffix ) {
 	$template_directory_uri = get_template_directory_uri();
 	$suffix                 = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-	wp_enqueue_style( 'responsive-theme-options', $template_directory_uri . '/core/includes/theme-options/theme-options' . $suffix . '.css', false, '1.0' );
+	wp_enqueue_style( 'responsive-theme-options', $template_directory_uri . '/core/includes/theme-options/theme-options'. $suffix . '.css', false, '1.0' );
 	wp_enqueue_script( 'responsive-theme-options', $template_directory_uri . '/core/includes/theme-options/theme-options' . $suffix . '.js', array( 'jquery' ), '1.0' );
 	wp_enqueue_script( 'responsive-skytabs', $template_directory_uri . '/core/includes/theme-options/sky-tabs-ie8.js');	
 	wp_enqueue_style('responsive-skytabs', $template_directory_uri . '/core/includes/theme-options/sky-tabs.css');
@@ -93,6 +93,12 @@ add_action( 'wp_footer', 'responsive_inline_js_footer' );
  * Create the options page
  */
 function responsive_theme_options_do_page() {
+	$options_posts = array();
+	$options_posts_obj = get_posts('posts_per_page=-1');
+	$options_posts[''] = esc_html(__( 'Choose Post', 'responsive' ));
+	foreach ( $options_posts_obj as $posts ) {
+		$options_posts[$posts->ID] = $posts->post_title;
+	}
 	
 	if ( !isset( $_REQUEST['settings-updated'] ) ) {
 		$_REQUEST['settings-updated'] = false;
@@ -137,8 +143,7 @@ function responsive_theme_options_do_page() {
 																	  array(
 																		  'title' => __( 'Home Page', 'responsive' ),
 																		  'id'    => 'home_page'
-																	  )
-																  ,
+																	  ),																	
 																	  array(
 																		  'title' => __( 'Default Layouts', 'responsive' ),
 																		  'id'    => 'layouts'
@@ -171,8 +176,7 @@ function responsive_theme_options_do_page() {
 				array(
 						'title' => __( 'Home Page', 'responsive' ),
 						'id'    => 'home_page'
-				)
-				,
+				),				
 				array(
 						'title' => __( 'Default Layouts', 'responsive' ),
 						'id'    => 'layouts'
@@ -209,9 +213,37 @@ function responsive_theme_options_do_page() {
 	 * @placeholder The placeholder for text and textarea
 	 * @options array used by select dropdown lists
 	 */
+	
 	$options = apply_filters( 'responsive_options_filter', array(
 		'theme_elements' => array(
-				array(
+			array(
+				'title'       => __( 'Override WooCommerce Templates?', 'responsive' ),
+				'subtitle'    => '',
+				'heading'     => '',
+				'type'        => 'checkbox',
+				'id'          => 'override_woo',
+				'description' => __( 'Check to enable', 'responsive' ),
+				'placeholder' => ''
+			),
+			array(
+					'title'       => __( 'Enable Sticky Header?', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'checkbox',
+					'id'          => 'sticky-header',
+					'description' => __( 'Check to enable', 'responsive' ),
+					'placeholder' => ''
+			),
+			array(
+				'title'       => __( 'Enable Featured images?', 'responsive' ),
+				'subtitle'    => '',
+				'heading'     => '',
+				'type'        => 'checkbox',
+				'id'          => 'featured_images',
+				'description' => __( 'Check to enable', 'responsive' ),
+				'placeholder' => ''
+			),
+			array(
 				'title'       => __( 'Disable breadcrumb list?', 'responsive' ),
 				'subtitle'    => '',
 				'heading'     => '',
@@ -219,6 +251,20 @@ function responsive_theme_options_do_page() {
 				'id'          => 'breadcrumb',
 				'description' => __( 'Check to disable', 'responsive' ),
 				'placeholder' => ''
+			),
+			array(
+				'title'       => __( 'Choose Site Layout', 'responsive' ),
+				'subtitle'    => '',
+				'heading'     => '',
+				'type'        => 'select',
+				'id'          => 'site_layout_option',
+				'description' => '',
+				'placeholder' => '',
+				'options'     => array(
+						'default-layout'  => __( 'Default', 'responsive' ),
+						'full-width-layout' => __( 'Full Width Layout', 'responsive' ),
+						'full-width-no-box'  => __('Full Width Without boxes','responsive')
+				)
 			),
 			array(
 				'title'       => __( 'Disable Call to Action Button?', 'responsive' ),
@@ -272,7 +318,7 @@ function responsive_theme_options_do_page() {
 				'id'          => 'poweredby_link',
 				'description' => '',
 				'placeholder' => ''
-			)
+			)			
 		),
 		'logo_upload' => array(
 			array(
@@ -295,6 +341,23 @@ function responsive_theme_options_do_page() {
 				'id'          => 'front_page',
 				'description' => sprintf( __( 'Overrides the WordPress %1sfront page option%2s', 'responsive' ), '<a href="options-reading.php">', '</a>' ),
 				'placeholder' => ''
+			),
+			array(
+					'title'       => __( 'Enable Slider on Home Page', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'checkbox',
+					'id'          => 'enable_slider',
+					'description' => '' ,
+					'placeholder' => ''
+			),
+			array(
+					'title'       => __( 'Slidedeck shortcode', 'responsive' ),
+					'subtitle'    => '',
+					'id'          => 'home_slider',
+					'heading'     => '',
+					'type'        => 'text',
+					'description' => __( 'Create slider using Slidedeck', 'responsive' ),
 			),
 			array(
 				'title'       => __( 'Headline', 'responsive' ),
@@ -341,6 +404,17 @@ function responsive_theme_options_do_page() {
 				'description' => __( 'Enter your call to action text', 'responsive' ),
 				'placeholder' => __( 'Call to Action', 'responsive' )
 			),
+                       array(
+                                'title'       => __( 'Call to Action Button Style', 'responsive' ),
+                                'subtitle'    => '',
+                                'heading'     => '',
+                                'id'          => 'button_style',
+                                'type'        => 'select',
+                                'options'     => array(
+                                    'default'  => __( 'Gradient', 'responsive' ),
+			             'flat_style' => __( 'Flat', 'responsive' ) 
+                                    )
+                          ),
 			array(
 				'title'       => __( 'Featured Content', 'responsive' ),
 				'subtitle'    => '<a class="help-links" href="' . esc_url( 'http://cyberchimps.com/guide/responsive/' ) . '" title="' . esc_attr__( 'See Docs', 'responsive' ) . '" target="_blank">' .
@@ -350,9 +424,235 @@ function responsive_theme_options_do_page() {
 				'id'          => 'featured_content',
 				'description' => __( 'Paste your shortcode, video or image source', 'responsive' ),
 				'placeholder' => "<img class='aligncenter' src='" . get_template_directory_uri() . "'/core/images/featured-image.png' width='440' height='300' alt='' />"
+			),
+			array(
+					'title'       => __( 'Enable About Section', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'checkbox',
+					'id'          => 'about',
+					'placeholder' => ''
+			),
+			array(
+					'title'       => __( 'About Title', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'about_title',					
+					'placeholder' => __( 'About Box Title', 'responsive' )
+			),
+			array(
+					'title'       => __( 'About Text', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'about_text'					
+			),	
+			array(
+					'title'       => __( 'Call to Action (Text)', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'about_cta_text'					
+			),
+			array(
+					'title'       => __( 'Call to Action (URL)', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'description' => __('Enter url as http://www.example.com','responsive'),
+					'id'          => 'about_cta_url'					
+			),
+			array(
+					'title'       => __( 'Enable Feature Section', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'checkbox',
+					'id'          => 'feature',
+					'placeholder' => ''
+			),
+			array(
+					'title'       => __( 'Feature', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'feature_title',
+					'description' => __( 'Enter your feature title', 'responsive' ),
+					'placeholder' => __( 'Feature', 'responsive' )
+			),
+			array(
+					'title'       => __( 'Select Post for feature 1', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'select',
+					'id'          => 'feature1',
+					'description' => '',
+					'placeholder' => '',
+					'options'     => Responsive_Options::options_posts()
+			),
+			array(
+					'title'       => __( 'Select Post for feature 2', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'select',
+					'id'          => 'feature2',
+					'description' => '',
+					'placeholder' => '',
+					'options'     => Responsive_Options::options_posts()
+			),
+			array(
+					'title'       => __( 'Select Post for feature 3', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'select',
+					'id'          => 'feature3',
+					'description' => '',
+					'placeholder' => '',
+					'options'     => Responsive_Options::options_posts()
+			),
+			array(
+					'title'       => __( 'Enable Testimonial Section', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'checkbox',
+					'id'          => 'testimonials',					
+					'placeholder' => ''
+			),
+			array(
+					'title'       => __( 'Testimonial Title', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'testimonial_title',
+					'description' => __( 'Enter your testimonial title', 'responsive' ),
+					'placeholder' => __( 'Testimonial', 'responsive' )
+			),
+			array(
+					'title'       => __( 'Select Post for testimonial', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'select',
+					'id'          => 'testimonial_val',
+					'description' => '',
+					'placeholder' => '',
+					'options'     => Responsive_Options::options_posts()
+			),
+			array(
+					'title'       => __( 'Enable Team Section', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'checkbox',
+					'id'          => 'team',
+					'placeholder' => ''
+			),
+			array(
+					'title'       => __( 'Team Title', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'team_title',
+					'description' => __( 'Enter your team title', 'responsive' ),
+					'placeholder' => __( 'Team', 'responsive' )
+			),
+			array(
+					'title'       => __( 'Select Post for team member1', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'select',
+					'id'          => 'teammember1',
+					'description' => '',
+					'placeholder' => '',
+					'options'     => Responsive_Options::options_posts()
+			),
+			array(
+					'title'       => __( 'Select Post for team member2', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'select',
+					'id'          => 'teammember2',
+					'description' => '',
+					'placeholder' => '',
+					'options'     => Responsive_Options::options_posts()
+			),
+			array(
+					'title'       => __( 'Select Post for team member3', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'select',
+					'id'          => 'teammember3',
+					'description' => '',
+					'placeholder' => '',
+					'options'     => Responsive_Options::options_posts()
+			),
+			array(
+					'title'       => __( 'Click to disable home page widgets', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'checkbox',
+					'id'          => 'home-widgets',					
+					'placeholder' => ''
+			),
+			array(
+					'title'       => __( 'Enable Contact Section', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'checkbox',
+					'id'          => 'contact',
+					'description' => '',
+					'placeholder' => ''
+			),
+			array(
+					'title'       => __( 'Contact section Title', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'contact_title',
+					'description' => '',
+					'placeholder' => __( 'Contact', 'responsive' )
+			),
+			array(
+					'title'       => __( 'Contact section Subtitle', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'contact_subtitlet',
+					'description' => '',
+					'placeholder' => __( 'Contact subtitle', 'responsive' )
+			),
+			array(
+					'title'       => __( 'Address', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'contact_add',
+					'description' => '',
+			),
+			array(
+					'title'       => __( 'Email', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'contact_email',
+					'description' => '',
+			),
+			array(
+					'title'       => __( 'Phone no', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'contact_ph',
+					'description' => '',
+			),
+			array(
+					'title'       => __( 'Contact form shortcode', 'responsive' ),
+					'subtitle'    => '',
+					'heading'     => '',
+					'type'        => 'text',
+					'id'          => 'contact_content',
+					'description' => __( 'You can put Contact Form 7 shortcode here', 'responsive' ),
+					'placeholder' => ''
 			)
-
-		),
+		),		
 		'layouts' => array(
 			array(
 				'title'       => __( 'Default Static Page Layout', 'responsive' ),
@@ -382,7 +682,7 @@ function responsive_theme_options_do_page() {
 				'id'          => 'blog_posts_index_layout_default',
 				'description' => '',
 				'placeholder' => '',
-				'options'     => Responsive_Options::valid_layouts()
+				'options'     => Responsive_Options::blog_valid_layouts()
 			)
 
 		),
@@ -494,6 +794,15 @@ function responsive_theme_options_do_page() {
 				'id'          => 'foursquare_uid',
 				'description' => __( 'Enter your foursquare URL', 'responsive' ),
 				'placeholder' => ''
+			),
+			array(
+				'title'       => __( 'Email Address', 'responsive' ),
+				'subtitle'    => '',
+				'heading'     => '',
+				'type'        => 'text',
+				'id'          => 'email_uid',
+				'description' => __( 'Enter your Email Address', 'responsive' ),
+				'placeholder' => ''
 			)
 
 		),
@@ -570,6 +879,7 @@ function responsive_theme_options_validate( $input ) {
 		// checkbox value is either 0 or 1
 		foreach( array(
 					'breadcrumb',
+					'featured_images',
 					'cta_button',
 					'front_page'
 				) as $checkbox ) {
@@ -592,6 +902,7 @@ function responsive_theme_options_validate( $input ) {
 					'cta_text',
 					'cta_url',
 					'featured_content',
+					'testimonial_title',
 				) as $content ) {
 			$input[$content] = ( in_array( $input[$content], array( $defaults[$content], '' ) ) ? $defaults[$content] : wp_kses_stripslashes( $input[$content] ) );
 		}
@@ -611,7 +922,8 @@ function responsive_theme_options_validate( $input ) {
 		$input['yelp_uid']                    = esc_url_raw( $input['yelp_uid'] );
 		$input['vimeo_uid']                   = esc_url_raw( $input['vimeo_uid'] );
 		$input['foursquare_uid']              = esc_url_raw( $input['foursquare_uid'] );
-		$input['responsive_inline_css']       = wp_kses_stripslashes( $input['responsive_inline_css'] );
+		$input['email_uid']                   = sanitize_email( $input['email_uid'] );
+		$input['responsive_inline_css']       = wp_kses_stripslashes( isset($input['responsive_inline_css']) );
 		$input['responsive_inline_js_head']   = wp_kses_stripslashes( $input['responsive_inline_js_head'] );
 		$input['responsive_inline_js_footer'] = wp_kses_stripslashes( $input['responsive_inline_js_footer'] );
 

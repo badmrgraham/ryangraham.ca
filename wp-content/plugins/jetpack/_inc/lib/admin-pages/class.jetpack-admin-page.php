@@ -194,17 +194,12 @@ abstract class Jetpack_Admin_Page {
 
 		self::$plan_checked = true;
 		$previous = get_option( 'jetpack_active_plan', '' );
-		$response = rest_do_request( new WP_REST_Request( 'GET', '/jetpack/v4/site' ) );
-
-		if ( ! is_object( $response ) || $response->is_error() ) {
-
+		$current = Jetpack_Core_Json_Api_Endpoints::site_data();
+		if ( ! $current || is_wp_error( $current ) ) {
 			// If we can't get information about the current plan we don't do anything
 			self::$plan_checked = true;
 			return;
 		}
-
-		$current = $response->get_data();
-		$current = json_decode( $current['data'] );
 
 		$to_deactivate = array();
 		if ( isset( $current->plan->product_slug ) ) {
@@ -216,15 +211,15 @@ abstract class Jetpack_Admin_Page {
 				$active = Jetpack::get_active_modules();
 				switch ( $current->plan->product_slug ) {
 					case 'jetpack_free':
-						$to_deactivate = array( 'seo-tools', 'videopress' );
+						$to_deactivate = array( 'seo-tools', 'videopress', 'google-analytics', 'wordads' );
 						break;
 					case 'jetpack_personal':
 					case 'jetpack_personal_monthly':
-						$to_deactivate = array( 'seo-tools', 'videopress' );
+						$to_deactivate = array( 'seo-tools', 'videopress', 'google-analytics', 'wordads' );
 						break;
 					case 'jetpack_premium':
 					case 'jetpack_premium_monthly':
-						$to_deactivate = array( 'seo-tools' );
+						$to_deactivate = array( 'seo-tools', 'google-analytics' );
 						break;
 				}
 				$to_deactivate = array_intersect( $active, $to_deactivate );

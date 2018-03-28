@@ -22,7 +22,7 @@ Template Name:  Sidebar/Content
  */
 ?>
 <?php get_header(); ?>
-
+<div id="content-outer">
 <div id="content" class="grid-right col-620 fit" role="main">
 
 	<?php if ( have_posts() ) : ?>
@@ -51,6 +51,7 @@ Template Name:  Sidebar/Content
 				<?php endif; ?>
 
 				<div class="post-entry">
+					<?php responsive_page_featured_image(); ?>
 					<?php the_content( __( 'Read more &#8250;', 'responsive' ) ); ?>
 					<?php wp_link_pages( array( 'before' => '<div class="pagination">' . __( 'Pages:', 'responsive' ), 'after' => '</div>' ) ); ?>
 				</div>
@@ -88,4 +89,5 @@ Template Name:  Sidebar/Content
 </div><!-- end of #content -->
 
 <?php get_sidebar( 'left' ); ?>
+</div>
 <?php get_footer(); ?>

@@ -26,7 +26,7 @@ get_header();
 global $more;
 $more = 0;
 ?>
-
+<div id="content-outer">
 <div id="content-blog" class="<?php echo esc_attr( implode( ' ', responsive_get_content_classes() ) ); ?>">
 
 	<?php get_template_part( 'loop-header', get_post_type() ); ?>
@@ -96,4 +96,5 @@ $more = 0;
 </div><!-- end of #content-blog -->
 
 <?php get_sidebar(); ?>
+</div>
 <?php get_footer(); ?>

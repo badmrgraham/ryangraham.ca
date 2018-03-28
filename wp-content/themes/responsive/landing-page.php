@@ -22,7 +22,7 @@ Template Name:  Landing Page (no menu)
  */
 
 get_header(); ?>
-
+<div id="content-outer">
 <div id="content-full" class="grid col-940">
 
 	<?php if ( have_posts() ) : ?>
@@ -36,6 +36,7 @@ get_header(); ?>
 				<h1 class="post-title"><?php the_title(); ?></h1>
 
 				<div class="post-entry">
+					<?php responsive_page_featured_image(); ?>
 					<?php the_content( __( 'Read more &#8250;', 'responsive' ) ); ?>
 					<?php wp_link_pages( array( 'before' => '<div class="pagination">' . __( 'Pages:', 'responsive' ), 'after' => '</div>' ) ); ?>
 				</div><!-- end of .post-entry -->
@@ -59,5 +60,5 @@ get_header(); ?>
 	?>
 
 </div><!-- end of #content-full -->
-
+</div>
 <?php get_footer(); ?>

@@ -2,6 +2,9 @@
 
 = Theme Name: Squirrel Theme Pro=
 
+= Version: 1.6.9 =
+1. Theme URI and footer links updated.
+
 = Version: 1.6.8 =
 1. Change Styling on posts.
 2. Remove error on 404 page.
