@@ -2,6 +2,10 @@
 
 = Theme Name: Squirrel Theme Pro=
 
+= Version: 1.7.0 =
+1. Popular social icon options added.
+2. Few links updated.
+
 = Version: 1.6.9 =
 1. Theme URI and footer links updated.
 

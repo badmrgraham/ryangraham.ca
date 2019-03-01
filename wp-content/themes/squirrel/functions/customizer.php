@@ -84,6 +84,17 @@ class Squirrel_Customizer {
             'capability' => 'edit_theme_options'
                 )
         );
+
+          /**
+         * Social Site link section
+         */
+        $wp_customize->add_section('social_network_section', array(
+            'title' => __('Social Site links', 'dzonia-lite'),
+            'description' => __('Allows you to setup social Site links for Dzonia Theme.', 'dzonia-lite'),
+            'priority' => '13',
+            'panel' => ''
+        ));
+
     }
 
     public static function Squirrel_Section_Content() {
@@ -112,6 +123,20 @@ class Squirrel_Customizer {
             'home_page_full_width' => array(
                 'squirrel_fullcolhead',
                 'squirrel_fullcoldesc'
+            ),
+            'social_network_section' => array(
+
+                'inkthemes_facebook',
+                'inkthemes_twitter',
+                'inkthemes_google',
+                'inkthemes_rss',
+                'inkthemes_pinterest',
+                'inkthemes_linked',
+                'inkthemes_instagram',
+                'inkthemes_youtube',
+                'inkthemes_tumblr',
+                'inkthemes_flickr'
+
             )
         );
         return $section_content;
@@ -226,7 +251,98 @@ class Squirrel_Customizer {
                 'type' => 'option',
                 'setting_type' => 'textarea',
                 'default' => __('Product Developers/ Internet Marketer make more sales when they can easily display their products with the buy links in the perfect location. Products with the buy link.My husband and I are either goinuy a dog or have a child. We cant decide whether to ruin our carpets or ruin our lives.', 'squirrel')
+            ),
+
+            'inkthemes_facebook' => array(
+                'id' => 'squirrel_options[inkthemes_facebook]',
+                'label' => __('Facebook URL', 'dzonia-lite'),
+                'description' => __('Enter your Facebook URL if you have one', 'dzonia-lite'),
+                'type' => 'option',
+                'setting_type' => 'link',
+                'default' => ''
+            ),
+
+            'inkthemes_twitter' => array(
+                'id' => 'squirrel_options[inkthemes_twitter]',
+                'label' => __('Twitter URL', 'dzonia-lite'),
+                'description' => __('Enter your Twitter URL if you have one', 'dzonia-lite'),
+                'type' => 'option',
+                'setting_type' => 'link',
+                'default' => ''
+            ),
+
+            'inkthemes_google' => array(
+                'id' => 'squirrel_options[inkthemes_google]',
+                'label' => __('Google+ URL', 'dzonia-lite'),
+                'description' => __('Enter your Google+ URL if you have one', 'dzonia-lite'),
+                'type' => 'option',
+                'setting_type' => 'link',
+                'default' => ''
+            ),
+
+            'inkthemes_rss' => array(
+                'id' => 'squirrel_options[inkthemes_rss]',
+                'label' => __('RSS URL', 'dzonia-lite'),
+                'description' => __('Enter your RSS URL if you have one', 'dzonia-lite'),
+                'type' => 'option',
+                'setting_type' => 'link',
+                'default' => ''
+            ),
+
+            'inkthemes_pinterest' => array(
+                'id' => 'squirrel_options[inkthemes_pinterest]',
+                'label' => __('Pinterest URL', 'dzonia-lite'),
+                'description' => __('Enter your Pinterest URL if you have one', 'dzonia-lite'),
+                'type' => 'option',
+                'setting_type' => 'link',
+                'default' => ''
+            ),
+
+            'inkthemes_linked' => array(
+                'id' => 'squirrel_options[inkthemes_linked]',
+                'label' => __('LinkedIn URL', 'dzonia-lite'),
+                'description' => __('Enter your Linkedin URL if you have one', 'dzonia-lite'),
+                'type' => 'option',
+                'setting_type' => 'link',
+                'default' => ''
+            ),
+
+            'inkthemes_instagram' => array(
+                'id' => 'squirrel_options[inkthemes_instagram]',
+                'label' => __('Instagram URL', 'dzonia-lite'),
+                'description' => __('Enter your Instagram URL if you have one', 'dzonia-lite'),
+                'type' => 'option',
+                'setting_type' => 'link',
+                'default' => ''
+            ),
+
+            'inkthemes_youtube' => array(
+                'id' => 'squirrel_options[inkthemes_youtube]',
+                'label' => __('Youtube URL', 'dzonia-lite'),
+                'description' => __('Enter your Youtube URL if you have one', 'dzonia-lite'),
+                'type' => 'option',
+                'setting_type' => 'link',
+                'default' => ''
+            ),
+
+            'inkthemes_tumblr' => array(
+                'id' => 'squirrel_options[inkthemes_tumblr]',
+                'label' => __('Tumblr URL', 'dzonia-lite'),
+                'description' => __('Enter your Tumblr URL if you have one', 'dzonia-lite'),
+                'type' => 'option',
+                'setting_type' => 'link',
+                'default' => ''
+            ),
+
+            'inkthemes_flickr' => array(
+                'id' => 'squirrel_options[inkthemes_flickr]',
+                'label' => __('Flickr URL', 'dzonia-lite'),
+                'description' => __('Enter your Flickr URL if you have one', 'dzonia-lite'),
+                'type' => 'option',
+                'setting_type' => 'link',
+                'default' => ''
             )
+
         );
         return $squirrel_settings;
     }
@@ -372,9 +488,9 @@ function inkthemes_registers() {
     wp_enqueue_script('inkthemes_customizer_script');
     wp_localize_script('inkthemes_customizer_script', 'ink_advert', array(
         'pro' => __('View PRO version', 'squirrel'),
-        'url' => esc_url('http://www.inkthemes.com/wp-themes/multipurpose-wordpress-theme/'),
+        'url' => esc_url('https://www.inkthemes.com/market/tattoo-shop-wordpress-theme//'),
         'support_text' => __('Need Help!', 'squirrel'),
-        'support_url' => esc_url('http://www.inkthemes.com/lets-connect/')
+        'support_url' => esc_url('https://www.inkthemes.com/contact-us/')
             )
     );
 }

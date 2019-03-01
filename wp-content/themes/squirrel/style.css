@@ -4,7 +4,7 @@ Theme URI: https://www.inkthemes.com/market/tattoo-shop-wordpress-theme/
 Author: InkThemes.com
 Author URI: http://inkthemes.com/
 Description: The Website built using Squirrel Theme is supereasy to build and is very simplistic in design, the visitors love to see the whole content clearly. Squirrel Theme got several theme options to allow changing and manipulating literally everything in the site. Still the site is very easy to built.
-Version: 1.6.9
+Version: 1.7.0
 License: GNU General Public License
 License URI: license.txt
 Text Domain: squirrel
@@ -562,87 +562,63 @@ textarea {
     margin-bottom:0;
     margin-top:3px;
 }
-.social_logos {
-    list-style-type:none;
-    float:right;
-    margin-bottom:0;
-    margin-right:20px;
-}
-.social_logos li {
-    display:inline;
-    margin-left:0;
-    margin-right:8px;
-    float: left;
-    margin-top:-2px;
-}
-.social_logos li a {
-    background: url(images/sl-6.png) no-repeat;
-    background-position: -55px 0;
-}
-.social_logos li a span {
-    background: url(images/sl-6.png) no-repeat;
-    display: block;
-    width: 26px;
-    height: 25px;
-    position: relative;
-    z-index: 10;
-    -webkit-transition: -webkit-transform 0.4s ease-out;
-    -moz-transition: -moz-transform 0.4s ease-out;
-    transition: transform 0.4s ease-out;
-}
-.social_logos li a:hover span {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    transform: rotate(360deg);
-}
-.social_logos li.sl-1 a {
-    background: url(images/sl-1.png) no-repeat;
-    width: 23px;
-    height: 24px;
-}
-.social_logos li.sl-1 a span {
-    background: url(images/sl-1.png) no-repeat;
-}
-.social_logos li.sl-2 a {
-    background: url(images/sl-2.png) no-repeat;
-    width: 26px;
-    height: 25px;
-}
-.social_logos li.sl-2 a span {
-    background: url(images/sl-2.png) no-repeat;
-}
-.social_logos li.sl-3 a {
-    background: url(images/sl-3.png) no-repeat;
-    width: 26px;
-    height: 25px;
-}
-.social_logos li.sl-3 a span {
-    background: url(images/sl-3.png) no-repeat;
-}
-.social_logos li.sl-5 a {
-    background: url(images/sl-4.png) no-repeat;
-    width: 26px;
-    height: 25px;
-}
-.social_logos li.sl-5 a span {
-    background: url(images/sl-4.png) no-repeat;
-}
-.social_logos li.sl-6 a {
-    background: url(images/sl-5.png) no-repeat;
-    width: 26px;
-    height: 25px;
-}
-.social_logos li.sl-6 a span {
-    background: url(images/sl-5.png) no-repeat;
-}
-.social_logos li.sl-7 a {
-    background: url(images/sl-7.png) no-repeat;
-    width: 26px;
-    height: 25px;
-}
-.social_logos li.sl-7 a span {
-    background: url(images/sl-7.png) no-repeat;
-}
+
+.social_logos {list-style-type:none;margin-bottom:0;margin-left:-5px;float: right;margin-right: 10px;}
+.social_logos li {display:inline;margin-left:0;margin-right:3px;float:left;padding:0;}
+.social_logos li a {background: url('images/social-icons.png') no-repeat 0 -3px;display: block;}
+.social_logos li a span {background: url(images/social-icons.png) no-repeat;display: block;height:22px;width:22px;position: relative;z-index: 10;-webkit-transition: -webkit-transform 0.4s ease-out;-moz-transition: -moz-transform 0.4s ease-out;transition: transform 0.4s ease-out;}
+.social_logos li a:hover span {-webkit-transform: rotate(460deg);-moz-transform: rotate(460deg);transform: rotate(460deg);}
+
+.social_logos li.facebook a {background: url('images/social-icons.png') no-repeat 0 0;
+	width: 25px;
+	height: 25px;}
+.social_logos li.facebook a span {background: url('images/social-icons.png') no-repeat 0 0;}
+
+.social_logos li.twitter a {background: url('images/social-icons.png') no-repeat -30px 0;
+	width: 25px;
+	height: 25px;}
+.social_logos li.twitter a span {background: url('images/social-icons.png') no-repeat -30px 0;}
+
+.social_logos li.google a {background: url('images/social-icons.png') no-repeat -62px 0;
+	width: 25px;
+	height: 25px;}
+.social_logos li.google a span {background: url('images/social-icons.png') no-repeat -62px 0;}
+
+.social_logos li.rss a {background: url('images/social-icons.png') no-repeat -92px 0;
+	width: 25px;
+	height: 25px;}
+.social_logos li.rss a span {background: url('images/social-icons.png') no-repeat -92px 0;}
+
+.social_logos li.pinterest a {background: url('images/social-icons.png') no-repeat -122px 0;
+	width: 25px;
+	height: 25px;}
+.social_logos li.pinterest a span {background: url('images/social-icons.png') no-repeat -122px 0;}
+
+.social_logos li.linkedin a {background: url('images/social-icons.png') no-repeat -152px 0;
+	width: 25px;
+	height: 25px;}
+.social_logos li.linkedin a span {background: url('images/social-icons.png') no-repeat -152px 0;}
+
+.social_logos li.instagram a {background: url('images/social-icons.png') no-repeat -182px 0;
+	width: 25px;
+	height: 25px;}
+.social_logos li.instagram a span {background: url('images/social-icons.png') no-repeat -182px 0;}
+
+.social_logos li.youtube a {background: url('images/social-icons.png') no-repeat -212px 0;
+	width: 25px;
+	height: 25px;}
+.social_logos li.youtube a span {background: url('images/social-icons.png') no-repeat -212px 0;}
+
+.social_logos li.tumblr a {background: url('images/social-icons.png') no-repeat -242px 0;
+	width: 25px;
+	height: 25px;}
+.social_logos li.tumblr a span {background: url('images/social-icons.png') no-repeat -242px 0;}
+
+.social_logos li.flickr a {background: url('images/social-icons.png') no-repeat -272px 0;
+	width: 25px;
+	height: 25px;}
+.social_logos li.flickr a span {background: url('images/social-icons.png') no-repeat -272px 0;}
+
 
 /*=====Footer-Style End
 ========================================*/
